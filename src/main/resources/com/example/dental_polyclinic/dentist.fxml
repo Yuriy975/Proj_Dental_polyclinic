@@ -80,7 +80,7 @@
                                                       <HBox prefHeight="45.0" prefWidth="748.0" HBox.hgrow="ALWAYS" />
                                                       <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="45.0" prefWidth="198.0" HBox.hgrow="ALWAYS">
                                                          <children>
-                                                            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="Вихід">
+                                                            <Button fx:id="Exit" mnemonicParsing="false" onAction="#Exitaction" prefHeight="42.0" prefWidth="115.0" text="Вихід">
                                                                <font>
                                                                   <Font name="System Bold" size="15.0" />
                                                                </font>

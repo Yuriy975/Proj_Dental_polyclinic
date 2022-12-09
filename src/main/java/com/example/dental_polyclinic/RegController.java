@@ -3,11 +3,13 @@ package com.example.dental_polyclinic;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,21 +22,30 @@ public class RegController {
     private URL location;
 
     @FXML
-    private Button SendButton;
+    private TextField loginfield;
 
     @FXML
-    void SendClick(ActionEvent event) {
+    private PasswordField passwordfield;
+
+    @FXML
+    private Button SendButton;
+
+    //String f, g;
+
+    @FXML
+    void SendClick(ActionEvent event) throws IOException {
+        String f = loginfield.getText();
+        String g = passwordfield.getText();
         SendButton.getScene().getWindow().hide();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setTitle("dental polyclinic");
-            stage.setScene(new Scene(root1));
-            stage.show();
-        } catch(Exception e){
-            System.out.println("Error!");
-        }
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        HelloController hellocontroller = fxmlLoader.getController();
+        hellocontroller.Stap1(f,g);
+        Stage stage = new Stage();
+        stage.setTitle("Стоматологічна клініка");
+        stage.setScene(scene);
+        stage.close();
+        stage.show();
     }
 
     @FXML
