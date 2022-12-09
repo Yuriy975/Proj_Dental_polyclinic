@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -41,20 +42,24 @@ public class ConfirmController {
         }
     }
 
+    String d2, t2;
+    public void extDateTime(String d1, String t1){
+        d2=d1;
+        t2=t1;
+    }
+
     @FXML
-    void showDialog2(ActionEvent event) {
-        NoButton.getScene().getWindow().hide();
-        try {
+    void showDialog2(ActionEvent event) throws IOException {
+            YesButton.getScene().getWindow().hide();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("dentist.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
+            Scene scene = new Scene(fxmlLoader.load());
+            DentistController appointmentList = fxmlLoader.getController();
+            appointmentList.addRecord(d2,t2);
             Stage stage = new Stage();
             stage.setTitle("Стоматолог");
-            stage.setScene(new Scene(root1));
+            stage.setScene(scene);
             stage.close();
             stage.show();
-        } catch(Exception e){
-            System.out.println("Error!");
-        }
     }
 
     @FXML

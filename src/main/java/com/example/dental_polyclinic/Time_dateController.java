@@ -1,5 +1,6 @@
 package com.example.dental_polyclinic;
 
+import com.example.dental_polyclinic.collection.CollectionLogOfVisits;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,6 +39,8 @@ public class Time_dateController{
 
     private Appointment appointment;
 
+    private CollectionLogOfVisits collectionLogOfVisits = new CollectionLogOfVisits();
+
     public Appointment getAppointment() {
         return appointment;
     }
@@ -54,15 +58,20 @@ public class Time_dateController{
 
     @FXML
     void Time_offer(ActionEvent event) {
-
     }
 
     @FXML
-    void YesClick(ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("dentist.fxml"));
-        DentistController dentistController = fxmlLoader.getController();
-        appointment.setDate(date_field.getText());
-        appointment.setTime(time_field.getText());
+    void YesClick(ActionEvent event) throws IOException {
+        yes_button.getScene().getWindow().hide();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("confirm.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        ConfirmController appointmentList = fxmlLoader.getController();
+        appointmentList.extDateTime(date_pacient,time_pacient);
+        Stage stage = new Stage();
+        stage.setTitle("Стоматолог");
+        stage.setScene(scene);
+        stage.close();
+        stage.show();
     }
 
 
@@ -101,11 +110,6 @@ public class Time_dateController{
             String tm2 = Integer.toString(t2);
             time_pacient = new StringBuilder().append(tm1).append(":").append(tm2).toString();
             time_field.setText(time_pacient);
-
-                yes_button.setOnAction(event -> {
-                yes_button.getScene().getWindow().hide();
-
-        });
 
     }
 }

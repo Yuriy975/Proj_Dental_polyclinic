@@ -22,7 +22,7 @@
                         <VBox prefHeight="200.0" prefWidth="100.0" />
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Button fx:id="EnterButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="512.0" style="-fx-background-color: #2BAD38;" text="Вхід" textFill="WHITE">
+                              <Button fx:id="EnterButton" mnemonicParsing="false" onAction="#EnterClick" prefHeight="100.0" prefWidth="512.0" style="-fx-background-color: #2BAD38;" text="Вхід" textFill="WHITE">
                                  <font>
                                     <Font name="Montserrat-Regular" size="50.0" />
                                  </font>
